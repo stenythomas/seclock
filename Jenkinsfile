@@ -97,7 +97,7 @@ pipeline {
                               -Dsonar.projectKey=SECLOCK \
                               -Dsonar.projectName=SECLOCK \
                               -Dsonar.sources=. \
-                              -Dsonar.exclusions="k8s/**,sample_certificates/**,__pycache__/**,.venv/**"
+                              -Dsonar.exclusions="k8s/**,sample_certificates/**,__pycache__/**,.venv/**,venv/**,aws/**,awscliv2.zip,*.zip
                         """
                     }
                 }
