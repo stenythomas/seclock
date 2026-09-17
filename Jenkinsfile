@@ -84,25 +84,25 @@ pipeline {
         /*
          * 4. SONARQUBE ANALYSIS
          */
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    echo 'Running SonarQube analysis...'
+       stage('SonarQube Analysis') {
+    steps {
+        script {
+            echo 'Running SonarQube analysis...'
 
-                    def scannerHome = tool "${SONAR_SCANNER}"
+            def scannerHome = tool 'sonar-scanner'
 
-                    withSonarQubeEnv("${SONARQUBE}") {
-                        sh """
-                            ${scannerHome}/bin/sonar-scanner \
-                              -Dsonar.projectKey=SECLOCK \
-                              -Dsonar.projectName=SECLOCK \
-                              -Dsonar.sources=. \
-                              -Dsonar.exclusions="k8s/**,sample_certificates/**,__pycache__/**,.venv/**,venv/**,aws/**,awscliv2.zip,*.zip
-                        """
-                    }
-                }
+            withSonarQubeEnv('SonarQube') {
+                sh """
+                    ${scannerHome}/bin/sonar-scanner \
+                      -Dsonar.projectKey=SECLOCK \
+                      -Dsonar.projectName=SECLOCK \
+                      -Dsonar.sources=. \
+                      -Dsonar.exclusions=k8s/**,sample_certificates/**,__pycache__/**,.venv/**,venv/**,aws/**,awscliv2.zip,*.zip
+                """
             }
         }
+    }
+}
 
         /*
          * 5. BUILD DOCKER IMAGE
