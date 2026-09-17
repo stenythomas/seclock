@@ -93,12 +93,7 @@ pipeline {
 
             withSonarQubeEnv('SonarQube') {
                 sh """
-                    ${scannerHome}/bin/sonar-scanner \
-                      -Dsonar.projectKey=SECLOCK \
-                      -Dsonar.projectName=SECLOCK \
-                      -Dsonar.sources=. \
-                      -Dsonar.exclusions=k8s/**,sample_certificates/**,__pycache__/**,.venv/**,venv/**,aws/**,awscliv2.zip,*.zip
-                      -Dsonar.nodejs.executable=/usr/bin/node
+                    ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=SECLOCK -Dsonar.projectName=SECLOCK -Dsonar.sources=. -Dsonar.exclusions=k8s/**,sample_certificates/**,__pycache__/**,.venv/**,venv/**,aws/**,awscliv2.zip,*.zip -Dsonar.nodejs.executable=/usr/bin/node
                 """
             }
         }
